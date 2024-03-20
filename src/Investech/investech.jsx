@@ -1,12 +1,35 @@
-import React from 'react';
-import backgroundImage from "../assets/main-background.jpg"
+import React, { useEffect, useState } from 'react';
+import './Investech.css'
+import backgroundImage from "../assets/logogo.jpg"
 
 
 
 const InvesTechWebsite = () => {
+
+  const [isScrolledToSection, setIsScrolledToSection] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.getElementById('animate-fade-in-and-up'); // Replace 'your-section-id' with the actual id of your section
+      if (section) {
+        const sectionPosition = section.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+        if (sectionPosition < screenHeight * 0.9) {
+          setIsScrolledToSection(true);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
   return (
-    <div className="container" style={{ background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>  
- <header className="text-gray-600 body-font">
+    <div className="container bg-black" >  
+ <header className="text-gray-600 body-font m-0">
   <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <a className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
@@ -28,25 +51,24 @@ const InvesTechWebsite = () => {
   </div>
 </header>
 
-<section className="text-gray-600 body-font">
-  <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
+<section className="text-gray-600 body-font  bg-gradient-to-b from-slate-900 to-teal-500"  >
+  <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center animate-fade-in-and-up ">
     <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-      <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-500">Before they sold out
+      <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-slate-300">Before they sold out
         <br className="hidden lg:inline-block" />readymade gluten
       </h1>
-      <p className="mb-8 leading-relaxed  text-gray-400 ">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
+      <p className="mb-8 leading-relaxed  text-slate-400 ">Copper mug try-hard pitchfork pour-over freegan heirloom neutra air plant cold-pressed tacos poke beard tote bag. Heirloom echo park mlkshk tote bag selvage hot chicken authentic tumeric truffaut hexagon try-hard chambray.</p>
       <div className="flex justify-center">
         <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
-        <button className="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
       </div>
     </div>
     <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-      <img className="object-cover object-center rounded" alt="hero" src="https://dummyimage.com/720x600"/>
+      <img className="object-cover object-center rounded spinning-image" alt="hero" src={backgroundImage}/>
     </div>
   </div>
 </section>
-<section className="text-gray-600 body-font">
-  <div className="container px-5 py-24 mx-auto flex flex-wrap">
+<section className= "text-gray-600 body-font bg-gradient-to-b from-slate-900 via-teal-500 to-slate-900 mx-9 my-9 rounded-3xl" >
+  <div id="animate-fade-in-and-up"  className={`container px-5 py-24 mx-auto flex flex-wrap ${isScrolledToSection ? 'animate-left-to-right' : ''}`}>
     <div className="lg:w-2/3 mx-auto">
       <div className="flex flex-wrap w-full bg-gray-100 py-32 px-10 relative mb-4">
         <img alt="gallery" className="w-full object-cover h-full object-center block opacity-25 absolute inset-0" src="https://dummyimage.com/820x340" />
@@ -93,7 +115,7 @@ const InvesTechWebsite = () => {
     </div>
   </div>
 </section>
-    <section className="text-gray-600 body-font">
+<section className="text-gray-600 body-font  bg-gradient-to-b  from-slate-900 to-teal-500 mx-9 my-9 rounded-3xl" >
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-wrap -mx-4 -mb-10 text-center">
       <div className="sm:w-1/2 mb-10 px-4">
@@ -115,7 +137,7 @@ const InvesTechWebsite = () => {
     </div>
   </div>
 </section>
-<section className="text-gray-600 body-font">
+<section className="text-gray-600 body-font bg-gradient-to-r from-slate-900 to-teal-500 mx-9 my-9 rounded-3xl">
   <div className="container px-5 py-24 mx-auto flex flex-wrap">
     <div className="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
       <div className="w-full sm:p-4 px-4 mb-6">
@@ -144,7 +166,7 @@ const InvesTechWebsite = () => {
     </div>
   </div>
 </section>
-<section className="text-gray-600 body-font">
+<section className="text-gray-600 body-font bg-gradient-to-b from-teal-500 via-slate-900 to-teal-500 mx-9 my-9 rounded-3xl">
   <div className="container px-5 py-24 mx-auto">
     <div className="flex flex-col text-center w-full mb-20">
       <h1 className="text-2xl font-medium title-font mb-4 text-blue-300 tracking-widest">OUR TEAM</h1>
@@ -262,7 +284,7 @@ const InvesTechWebsite = () => {
     </div>
   </div>
 </section>
-<footer className="text-gray-600 body-font">
+<footer className="text-gray-600 body-font  bg-gradient-to-l  from-slate-900 to-teal-500 mx-9 my-9 rounded-3xl ">
   <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
     <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left md:mt-0 mt-10">
       <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
@@ -344,7 +366,8 @@ const InvesTechWebsite = () => {
       </div>
     </div>
   </div>
-  <div className="bg-gray-100">
+</footer>
+<div className="bg-stale-800">
     <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
       <p className="text-gray-500 text-sm text-center sm:text-left">© 2020 Tailblocks —
         <a href="https://twitter.com/knyttneve" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@knyttneve</a>
@@ -375,7 +398,6 @@ const InvesTechWebsite = () => {
       </span>
     </div>
   </div>
-</footer>
 </div>
     
   );
